@@ -1,0 +1,13 @@
+arr = [10,9,8];
+function insertionSort(arr){
+    for(var i=1; i<arr.length; i++){
+        var value = arr[i];
+        var j=i-1;
+        for(;j>=0 && value<arr[j];j--){
+            arr[j+1]=arr[j];
+            }
+            arr[j+1]=value;
+    }
+    return arr;
+}
+insertionSort(arr);
