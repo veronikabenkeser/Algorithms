@@ -1,0 +1,61 @@
+//Find the number of inversion in this array
+
+var arr=[1, 20, 6, 4, 5];
+
+function mSort(arr,num){
+
+    //base case
+    if (arr.length<2) return [arr,num];
+    
+    var middle = Math.floor(arr.length/2);
+    var left = arr.slice(0, middle);
+    var right = arr.slice(middle); 
+    
+    var resArr1 = mSort(left, num);
+    var b = resArr1[0];
+     num+=resArr1[1];
+      var resArr2  = mSort(right,num);
+      var c = resArr2[0];
+      num+=resArr2[1];
+    var resultArr= merge(b,c,num);
+    num=resultArr[1];
+    return resultArr;
+  
+}
+
+function merge(arr1, arr2,num){
+   
+    var newA=[];
+    var i=0;
+    var j=0;
+    
+    
+    while(i<arr1.length && j<arr2.length){
+        //The items in both the right array arr1 and left array arr2 have already been sorted in ascending
+        //order; if the item at index j of the right array is smaller than the item at index i of the left array,
+        //then the item at index j is smaller than the remaining items arr1. 
+        if(arr2[j]<arr1[i]){
+            newA.push(arr2[j]);
+           
+            
+            var temp=arr1.slice(i);
+        
+            //increment the total number of inversions by the number of elements remaining in the b array.
+            for(var k=0;k<temp.length;k++){
+                
+                num++;
+            }
+            
+             j++;
+        } else{
+            newA.push(arr1[i]);
+            i++;
+        }
+    }
+   
+newA= newA.concat(arr1.slice(i)).concat(arr2.slice(j));
+   return [newA,num];
+}
+
+
+mSort(arr, 0);
