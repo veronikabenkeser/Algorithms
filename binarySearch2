@@ -1,0 +1,37 @@
+//Given a sorted array of integers, return the index of the given key. Return -1 if not found.
+
+var arr =[1,2,3,4,5,6,7,9,10,20,40];
+
+function containsNum(arr, val){
+    //binary search
+    var middleIndex = (arr.length-1)/2;
+    
+    if(arr.length<1){
+        return false;
+    }
+    
+    if(arr[middleIndex] === val){
+        return true;
+    } else if(val>middleIndex){
+        arr= arr.slice(middleIndex+1);
+    } else {
+        arr = arr.slice(0, middleIndex);
+    }
+    return containsNum(arr,val);
+}
+
+containsNum(arr,100);
+
+function findNum1(arr,val, start, end){
+    var middleIndex = Math.floor((start+end)/2);
+    if(arr[middleIndex] === val){
+        return middleIndex;
+    } else if(val>arr[middleIndex]){
+        start = middleIndex+1;
+    } else {
+        end = middleIndex;
+    }
+    return findNum1(arr,val,start,end);
+}
+
+findNum1(arr,40, 0, arr.length);
