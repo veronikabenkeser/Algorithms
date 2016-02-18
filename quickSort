@@ -1,0 +1,38 @@
+//Given an integer array, sort it in ascending order using quicksort.
+
+var arr =[100, 7, 2,1,10,3,4,0];
+
+//pivot and partition
+function partition(arr,start,end){
+    var pivot = arr[end];
+    var i=start-1;
+    
+    for(var j=start; j<=end-1; j++){
+        if(arr[j]<=pivot){
+            i++;
+            //exchange(arr[i],arr[j]);
+            var temp = arr[j];
+            arr[j]=arr[i];
+            arr[i]=temp;
+        }
+    }
+    //exchange arr[i+1] and arr[end]
+    var temp = arr[end];
+    arr[end] = arr[i+1];
+    arr[i+1]=temp;
+    
+    //return the index of the correctly placed element
+    return i+1;
+}
+
+function quickSort(arr, start, end){
+    if(start<end){
+        var q = partition(arr, start, end); //correct index of one element
+        quickSort(arr, start, q-1);
+        quickSort(arr, q+1 , end);
+    }
+    return arr;
+}
+
+console.log(quickSort(arr, 0, arr.length-1));
+
