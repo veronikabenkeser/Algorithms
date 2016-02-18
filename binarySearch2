@@ -34,4 +34,4 @@ function findNum1(arr,val, start, end){
     return findNum1(arr,val,start,end);
 }
 
-findNum1(arr,40, 0, arr.length);
+findNum1(arr,40, 0, arr.length-1);
