@@ -1,0 +1,45 @@
+//Write inorder traversal of a binary tree iteratively.
+
+function Stack(){
+    this.size=0;
+    this.storage={};
+}
+
+Stack.prototype.push = function(val){
+  this.size++;
+  this.storage[size] = val;
+};
+
+Stack.prototype.pop = function(){
+    var deletedData = this.storage[size];
+    delete this.storage[size];
+    size--;
+    return deletedData;
+};
+
+Stack.prototype.isEmpty = function(){
+    if(!this.size)return true;
+    return false;
+};
+
+function inOrder(root){
+    
+    //push root onto the stack
+    var stack = new Stack();
+    stack.push(root);
+    
+    //go down the left tree and push everything onto the stack
+    while(root !== null || !stack.isEmpty()){
+        
+        while(root !== null){
+            root=root.left;
+            stack.push(root);
+        }
+        
+        //at this point, the root is null
+        //pop an item off the stack
+        var item = stack.pop();
+        console.log(item);
+        root = item.right;
+    }
+}
